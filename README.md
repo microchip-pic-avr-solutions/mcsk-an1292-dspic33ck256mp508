@@ -1,6 +1,6 @@
 ![image](images/microchip.jpg) 
 
-## %repoDescritpion%
+## mcsk an1292 dspic33ck256mp508
 
 Board Image if any.
 
