@@ -8,8 +8,8 @@
     This file includes subroutine for initializing ADC Cores of Controller
 
   Description:
-    Definitions in the file are for dsPIC33CK256MP508 MC DIM plugged onto
-	Motor Control Development board from Microchip
+    Definitions in the file are for dsPIC33CK256MP508 on Motor Control 
+    Development board from Microchip
 
 *******************************************************************************/
 /*******************************************************************************
@@ -237,15 +237,11 @@ void InitializeADCs (void)
     /*Ib*/
     ADMOD0Lbits.SIGN4 = 1;
     /*ADMOD0H configures Output Data Sign for Analog inputs  AN8 to AN15 */
-    ADMOD0H = 0x0000;
-    /*Vbus*/
+    ADMOD0H = 0;
+    ADMOD0Hbits.SIGN11 = 0;
+    ADMOD0Hbits.SIGN12 = 0;    
     ADMOD0Hbits.SIGN15 = 0;
-    /*ADMOD1L configures Output Data Sign for Analog inputs  AN16 to AN23 */
-    ADMOD1L = 0x0000;
-    /*POT*/
-    ADMOD1Lbits.SIGN17 = 0;
-    /*MOSFET Temp*/
-    ADMOD1Lbits.SIGN18 = 0;
+
     
     /* Ensuring all interrupts are disabled and Status Flags are cleared */
     ADIEL = 0;
@@ -299,13 +295,13 @@ void InitializeADCs (void)
        1 = Common and individual interrupts are enabled for analog channel
        0 = Common and individual interrupts are disabled for analog channel*/
    
-    _IE18        = 0 ;
+    _IE15        = 0 ;
     /* Clear ADC interrupt flag */
-    _ADCAN18IF    = 0 ;  
+    _ADCAN15IF    = 0 ;  
     /* Set ADC interrupt priority IPL 7  */ 
-    _ADCAN18IP   = 7 ;  
+    _ADCAN15IP   = 7 ;  
     /* Disable the AN15 interrupt  */
-    _ADCAN18IE    = 0 ; 
+    _ADCAN15IE    = 0 ; 
     
     _IE11        = 0 ;
     /* Clear ADC interrupt flag */
@@ -324,22 +320,22 @@ void InitializeADCs (void)
     _ADCAN0IE    = 0 ;  
     
 #ifdef SINGLE_SHUNT    
-     _IE0        = 1 ;
+     _IE4        = 1 ;
     /* Clear ADC interrupt flag */
-    _ADCAN0IF    = 0 ;  
+    _ADCAN4IF    = 0 ;  
     /* Set ADC interrupt priority IPL 7  */ 
-    _ADCAN0IP   = 7 ;  
+    _ADCAN4IP   = 7 ;  
     /* Disable the AN4 interrupt  */
-    _ADCAN0IE    = 0 ;
+    _ADCAN4IE    = 0 ;
      
 #else         
-    _IE17        = 1 ;
+    _IE1        = 1 ;
     /* Clear ADC interrupt flag */
-    _ADCAN17IF    = 0 ;  
+    _ADCAN1IF    = 0 ;  
     /* Set ADC interrupt priority IPL 7  */ 
-    _ADCAN17IP   = 7 ;  
+    _ADCAN1IP   = 7 ;  
     /* Disable the AN1 interrupt  */
-    _ADCAN17IE    = 0 ; 
+    _ADCAN1IE    = 0 ; 
 #endif
     
     /* Trigger Source Selection for Corresponding Analog Inputs bits 
@@ -348,21 +344,26 @@ void InitializeADCs (void)
         00001 = Common software trigger
         00000 = No trigger is enabled  */
     
-
-#ifdef SINGLE_SHUNT
-    /* Trigger Source for Analog Input #0  = 0b0101 for Ibus*/
-    ADTRIG0Lbits.TRGSRC0 = 0x5;
-#else
-      /* Trigger Source for Analog Input #1  = 0b0100 for Ia */
+    /* Trigger Source for Analog Input #0  = 0b0100 */
+    ADTRIG0Lbits.TRGSRC0 = 0x4;
+    /* Trigger Source for Analog Input #1  = 0b0100 */
     ADTRIG0Lbits.TRGSRC1 = 0x4;
-    /* Trigger Source for Analog Input #4  = 0b0100 for Ib */
-    ADTRIG1Lbits.TRGSRC4 = 0x4;  
-#endif
-    /* Trigger Source for Analog Input #15  = 0b0100 for Vbus */
+#ifdef SINGLE_SHUNT
+    /* Trigger Source for Analog Input #4  = 0b0101 */
+    ADTRIG1Lbits.TRGSRC4 = 0x5;
+    /* Trigger Source for Analog Input #11  = 0b0001 */
+    ADTRIG2Hbits.TRGSRC11 = 0x1;
+    /* Trigger Source for Analog Input #12  = 0b0001 */
+    ADTRIG3Lbits.TRGSRC12 = 0x1;
+    /* Trigger Source for Analog Input #15  = 0b0001 */
+    ADTRIG3Hbits.TRGSRC15 = 0x1;
+#else
+    /* Trigger Source for Analog Input #11  = 0b0100 */
+    ADTRIG2Hbits.TRGSRC11 = 0x4;
+    /* Trigger Source for Analog Input #12  = 0b0100 */
+    ADTRIG3Lbits.TRGSRC12 = 0x4;
+    /* Trigger Source for Analog Input #15  = 0b0100 */
     ADTRIG3Hbits.TRGSRC15 = 0x4;
-    /* Trigger Source for Analog Input #17  = 0b0100 for POT */
-    ADTRIG4Lbits.TRGSRC17 = 0x4;
-    /* Trigger Source for Analog Input #18  = 0b0100 for MOSFET Temp*/
-    ADTRIG4Hbits.TRGSRC18 = 0x4;
+#endif
 
 }

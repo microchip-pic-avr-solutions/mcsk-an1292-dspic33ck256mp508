@@ -5,8 +5,7 @@
  * This file includes subroutine for initializing Comparators.
  * The DAC is configured only for its basic operation.
  * 
- *  Definitions in the file are for dsPIC33CK256MP508 MC DIM plugged onto
-    Motor Control Development board from Microchip
+ * Definitions in this file are for dsPIC33CK256MP508.
  * 
  * Component: HAL - Comparator with DAC
  * 

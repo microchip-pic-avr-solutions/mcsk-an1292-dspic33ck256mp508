@@ -9,8 +9,8 @@
     Edge Placement 
 
   Description:
-    Definitions in the file are for dsPIC33CK256MP508 MC DIM plugged onto
-    Motor Control Development board from Microchip
+    Definitions in the file are for dsPIC33CK256MP508 on Motor Control 
+    Development board from Microchip
 
 *******************************************************************************/
 /*******************************************************************************
@@ -71,17 +71,15 @@
 // MC PWM MODULE Related Definitions
 #define INVERTERA_PWM_PDC1      PG1DC
 #define INVERTERA_PWM_PDC2      PG2DC
-#define INVERTERA_PWM_PDC3      PG3DC
+#define INVERTERA_PWM_PDC3      PG4DC
         
 #define INVERTERA_PWM_PHASE1    PG1PHASE 
 #define INVERTERA_PWM_PHASE2    PG2PHASE
-#define INVERTERA_PWM_PHASE3    PG3PHASE  
+#define INVERTERA_PWM_PHASE3    PG4PHASE  
         
 #define INVERTERA_PWM_TRIGA      PG1TRIGA 
 #define INVERTERA_PWM_TRIGB      PG1TRIGB   
-#define INVERTERA_PWM_TRIGC      PG1TRIGC      
-        
-#define PWM_FAULT_STATUS        PG1STATbits.FLTACT
+#define INVERTERA_PWM_TRIGC      PG1TRIGC         
         
 #define _PWMInterrupt           _PWM1Interrupt
 #define ClearPWMIF()            _PWM1IF = 0        

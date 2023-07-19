@@ -4,7 +4,7 @@
  *
  * This file includes subroutine to configure UART1 Module
  * 
- * Definitions in this file are for dsPIC33CK256MP508 MC DIM.
+ * Definitions in this file are for dsPIC33CK256MP508.
  * 
  * Component: Slave1 Core - HAL - UART1
  * 

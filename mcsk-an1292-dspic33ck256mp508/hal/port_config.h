@@ -10,8 +10,8 @@
     pins
 
   Description:
-    Definitions in the file are for dsPIC33CK256MP508 MC DIM plugged onto
-    Motor Control Development board from Microchip
+    Definitions in the file are for dsPIC33CK256MP508 on Motor Control 
+    Development board from Microchip
 
 *******************************************************************************/
 /*******************************************************************************
@@ -65,22 +65,22 @@
 // Digital I/O definitions
 // Push button Switches
     
-// SW1 :  (RE10)
-#define SW1                   PORTEbits.RE10
-// SW2 :  (RE11)
-#define SW2                   PORTEbits.RE11
+// SW1 :  (RE11)
+#define SW1                   PORTEbits.RE11
+// SW2 :  (RE12)
+#define SW2                   PORTEbits.RE12
         
-// S2 : PIM #34 - Used as START/STOP button of Motor
+// S2 : Used as START/STOP button of Motor
 #define BUTTON_START_STOP        SW1
-// S3 : PIM #36 - Used as Speed HALF/DOUBLE button of Motor
+// S3 : Used as Speed HALF/DOUBLE button of Motor
 #define BUTTON_SPEED_HALF_DOUBLE      SW2
 
 
 // Debug LEDs
-// LED2 : 
-#define LED2                    LATEbits.LATE13
-// LED1 : 
-#define LED1                    LATEbits.LATE12
+// LED2(LD11) : (RE7)
+#define LED2                    LATEbits.LATE7
+// LED1(LD10) : (RE6)
+#define LED1                    LATEbits.LATE6
 
 
 // *****************************************************************************

@@ -5,8 +5,7 @@
  * This header file lists interface functions - configuring and enabling the 
  * Comparator Modules and its output
  * 
- *  Definitions in the file are for dsPIC33CK256MP508 MC DIM plugged onto
-    Motor Control Development board from Microchip
+ * Definitions in this file are for dsPIC33CK256MP508.
  * 
  * Component: HAL - CMP
  * 

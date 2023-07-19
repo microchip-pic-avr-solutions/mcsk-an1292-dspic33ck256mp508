@@ -144,7 +144,7 @@ int main ( void )
 
             if (IsPressed_Button1())
             {
-                if  ((uGF.bits.RunMotor == 1) || (PWM_FAULT_STATUS == 1))
+                if  (uGF.bits.RunMotor == 1)
                 {
                     ResetParmeters();
                 }
@@ -757,5 +757,6 @@ void __attribute__((__interrupt__,no_auto_psv)) _PWMInterrupt()
 {
     ResetParmeters();
     ClearPWMPCIFaultInverterA();
+    LED2 = 0; 
     ClearPWMIF(); 
 }
