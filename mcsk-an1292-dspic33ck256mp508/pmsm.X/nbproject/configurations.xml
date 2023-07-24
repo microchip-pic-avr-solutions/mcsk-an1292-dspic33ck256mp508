@@ -82,7 +82,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>2.00</languageToolchainVersion>
+        <languageToolchainVersion>2.10</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -164,7 +164,7 @@
         <property key="oXC16gcc-sfr-warn" value="false"/>
         <property key="oXC16gcc-smar-io-lvl" value="1"/>
         <property key="oXC16gcc-smart-io-fmt" value=""/>
-        <property key="optimization-level" value="0"/>
+        <property key="optimization-level" value="1"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
         <property key="preprocessor-macros" value=""/>

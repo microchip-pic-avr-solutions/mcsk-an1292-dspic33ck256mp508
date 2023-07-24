@@ -125,7 +125,7 @@ void InitializeADCs (void)
        for the shared ADC core sample time.
        Ranges from 2 to 1025 TADCORE
        if SHRSAMC = 15 ,then Sampling time is 17 TADCORE */
-    ADCON2Hbits.SHRSAMC = 15;
+    ADCON2Hbits.SHRSAMC = 4;
 
     ADCON3L  = 0;
     /* ADC Reference Voltage Selection bits 
@@ -202,7 +202,7 @@ void InitializeADCs (void)
     
     /* Initialize DEDICATED ADC CORE 1 CONTROL REGISTER LOW */
     ADCORE1L     = 0x0000;
-    /* Dedicated ADC Core 0 Conversion Delay Selection bits 
+    /* Dedicated ADC Core 1 Conversion Delay Selection bits 
     These bits determine the time between the trigger event and 
     the start of conversion in the number of the Core Clock Periods (TADCORE)
     Ranges from 2 to 1025 TADCORE
@@ -230,18 +230,21 @@ void InitializeADCs (void)
        0 = Channel output data is unsigned    */
     /*ADMOD0L configures Output Data Sign for Analog inputs  AN0 to AN7 */
     ADMOD0L = 0x0000;
-    /*Ibus*/
-    ADMOD0Lbits.SIGN0 = 1;
     /*Ia*/
-    ADMOD0Lbits.SIGN1 = 1;
+    ADMOD0Lbits.SIGN0 = 1;
     /*Ib*/
+    ADMOD0Lbits.SIGN1 = 1;
+    /*Ibus*/
     ADMOD0Lbits.SIGN4 = 1;
+   
     /*ADMOD0H configures Output Data Sign for Analog inputs  AN8 to AN15 */
     ADMOD0H = 0;
+    /*POT*/
     ADMOD0Hbits.SIGN11 = 0;
-    ADMOD0Hbits.SIGN12 = 0;    
+    /*MOSFET Temp*/	
+    ADMOD0Hbits.SIGN12 = 0;   
+    /*Vbus*/ 
     ADMOD0Hbits.SIGN15 = 0;
-
     
     /* Ensuring all interrupts are disabled and Status Flags are cleared */
     ADIEL = 0;
@@ -343,27 +346,19 @@ void InitializeADCs (void)
         00100 = PMW1 Trigger 1
         00001 = Common software trigger
         00000 = No trigger is enabled  */
-    
+#ifdef SINGLE_SHUNT
+    /* Trigger Source for Analog Input #4  = 0b0101 */
+    ADTRIG1Lbits.TRGSRC4 = 0x5;
+#else
     /* Trigger Source for Analog Input #0  = 0b0100 */
     ADTRIG0Lbits.TRGSRC0 = 0x4;
     /* Trigger Source for Analog Input #1  = 0b0100 */
     ADTRIG0Lbits.TRGSRC1 = 0x4;
-#ifdef SINGLE_SHUNT
-    /* Trigger Source for Analog Input #4  = 0b0101 */
-    ADTRIG1Lbits.TRGSRC4 = 0x5;
-    /* Trigger Source for Analog Input #11  = 0b0001 */
-    ADTRIG2Hbits.TRGSRC11 = 0x1;
-    /* Trigger Source for Analog Input #12  = 0b0001 */
-    ADTRIG3Lbits.TRGSRC12 = 0x1;
-    /* Trigger Source for Analog Input #15  = 0b0001 */
-    ADTRIG3Hbits.TRGSRC15 = 0x1;
-#else
+#endif
     /* Trigger Source for Analog Input #11  = 0b0100 */
     ADTRIG2Hbits.TRGSRC11 = 0x4;
     /* Trigger Source for Analog Input #12  = 0b0100 */
     ADTRIG3Lbits.TRGSRC12 = 0x4;
     /* Trigger Source for Analog Input #15  = 0b0100 */
     ADTRIG3Hbits.TRGSRC15 = 0x4;
-#endif
-
 }

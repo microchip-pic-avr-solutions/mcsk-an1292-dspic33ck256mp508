@@ -44,7 +44,6 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 #include <stdint.h>
-#include <xc.h>
 #include "general.h"
 
 // *****************************************************************************
@@ -79,11 +78,10 @@ constant slope. The slope is determined by TUNING_DELAY_RAMPUP constant.
 /* Definition for torque mode - for a separate tuning of the current PI
 controllers, tuning mode will disable the speed PI controller */
 #undef TORQUE_MODE
-    
+/* FOC with single shunt is enabled */
 /* undef to work with dual Shunt  */    
 #undef SINGLE_SHUNT     
-
-/* undef to work with External Op-Amp*/
+/*Definition for Current to be amplified through Internal Op-Amp*/
 #define INTERNAL_OPAMP_CONFIG    
 
 /****************************** Motor Parameters ******************************/
@@ -91,7 +89,7 @@ controllers, tuning mode will disable the speed PI controller */
 /* The following values are given in the xls attached file */
     
     
-/*Update the following motor tuning parameters while using MCLV-48V-300W build configuration*/
+/*Update the following motor tuning parameters while using LVMC build configuration*/
     
 /* Motor's number of pole pairs */
 #define NOPOLESPAIRS 5

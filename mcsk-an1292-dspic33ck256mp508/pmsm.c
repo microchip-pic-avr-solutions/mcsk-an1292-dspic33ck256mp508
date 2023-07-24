@@ -153,7 +153,6 @@ int main ( void )
                     EnablePWMOutputsInverterA();
                     uGF.bits.RunMotor = 1;
                 }
-
             }
             if(IsPressed_Button2())
             {
@@ -339,6 +338,7 @@ void DoControl( void )
             ctrlParm.targetSpeed = (__builtin_mulss(measureInputs.potValue,
                     MAXIMUMSPEED_ELECTR-NOMINALSPEED_ELECTR)>>15)+
                     NOMINALSPEED_ELECTR;  
+            
         }
         else
         {
