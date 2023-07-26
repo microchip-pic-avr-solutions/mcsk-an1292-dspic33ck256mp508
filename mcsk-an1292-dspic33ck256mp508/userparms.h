@@ -96,7 +96,7 @@ controllers, tuning mode will disable the speed PI controller */
 /* Nominal speed of the motor in RPM */
 #define NOMINAL_SPEED_RPM    2800 
 /* Maximum speed of the motor in RPM - given by the motor's manufacturer */
-#define MAXIMUM_SPEED_RPM    3800 
+#define MAXIMUM_SPEED_RPM    4000 
 
 /* The following values are given in the xls attached file */
 #define NORM_CURRENT_CONST     0.000671
@@ -126,7 +126,7 @@ controllers, tuning mode will disable the speed PI controller */
 /* di = i(t1)-i(t2) limitation
  high speed limitation, for dt 50us 
  the value can be taken from attached xls file */
-#define D_ILIMIT_HS 415
+#define D_ILIMIT_HS 437
 /* low speed limitation, for dt 8*50us */
 #define D_ILIMIT_LS 2447
 
@@ -137,7 +137,7 @@ controllers, tuning mode will disable the speed PI controller */
 /* BEMF filter for d-q components @ low speeds */
 #define KFILTER_ESDQ 1000
 /* BEMF filter for d-q components @ high speed - Flux Weakening case */
-#define KFILTER_ESDQ_FW 500
+#define KFILTER_ESDQ_FW 600
 /* Estimated speed filter constant */
 #define KFILTER_VELESTIM 300
 
@@ -190,14 +190,14 @@ minimum value accepted */
     
 /* PI controllers tuning values - */     
 /* D Control Loop Coefficients */
-#define D_CURRCNTR_PTERM       Q15(0.903)
-#define D_CURRCNTR_ITERM       Q15(0.6921)
+#define D_CURRCNTR_PTERM       Q15(0.379)
+#define D_CURRCNTR_ITERM       Q15(0.290)
 #define D_CURRCNTR_CTERM       Q15(0.999)
 #define D_CURRCNTR_OUTMAX      0x7FFF
 
 /* Q Control Loop Coefficients */
-#define Q_CURRCNTR_PTERM       Q15(0.903)  
-#define Q_CURRCNTR_ITERM       Q15(0.6921)  
+#define Q_CURRCNTR_PTERM       Q15(0.379)  
+#define Q_CURRCNTR_ITERM       Q15(0.290)  
 #define Q_CURRCNTR_CTERM       Q15(0.999)
 #define Q_CURRCNTR_OUTMAX      0x7FFF
 
@@ -205,7 +205,7 @@ minimum value accepted */
 #define SPEEDCNTR_PTERM        Q15(0.005)
 #define SPEEDCNTR_ITERM        Q15(0.0001)
 #define SPEEDCNTR_CTERM        Q15(0.999)
-#define SPEEDCNTR_OUTMAX       0x7FFF 
+#define SPEEDCNTR_OUTMAX       0x5000 
 
 /******************************** Field Weakening *****************************/
 /* Field Weakening constant for constant torque range 
