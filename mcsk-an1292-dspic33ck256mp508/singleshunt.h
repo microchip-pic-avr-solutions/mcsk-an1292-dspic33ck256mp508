@@ -66,7 +66,7 @@ extern "C" {
 // <editor-fold defaultstate="expanded" desc="DEFINITIONS/MACROS ">
 
 /*  Critical Minimum window in seconds to measure current through single shunt*/
-#define SSTCRITINSEC	3.0E-6
+#define SSTCRITINSEC	3.5E-6
 /* Single shunt algorithm defines *2 because is same resolution as PDCx registers */
 #define SSTCRIT         (uint16_t)(SSTCRITINSEC*FCY*2)
 /* Single shunt algorithm defines *2 because is same resolution as PDCx registers */

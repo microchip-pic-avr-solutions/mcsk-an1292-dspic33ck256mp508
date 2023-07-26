@@ -124,8 +124,8 @@ void InitializeADCs (void)
        These bits specify the number of shared ADC Core Clock Periods (TADCORE) 
        for the shared ADC core sample time.
        Ranges from 2 to 1025 TADCORE
-       if SHRSAMC = 15 ,then Sampling time is 17 TADCORE */
-    ADCON2Hbits.SHRSAMC = 4;
+       if SHRSAMC = 7 ,then Sampling time is 9 TADCORE */
+    ADCON2Hbits.SHRSAMC = 7;
 
     ADCON3L  = 0;
     /* ADC Reference Voltage Selection bits 

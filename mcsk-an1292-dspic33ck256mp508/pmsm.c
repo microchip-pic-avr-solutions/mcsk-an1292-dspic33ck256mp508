@@ -757,6 +757,6 @@ void __attribute__((__interrupt__,no_auto_psv)) _PWMInterrupt()
 {
     ResetParmeters();
     ClearPWMPCIFaultInverterA();
-    LED2 = 0; 
+    LED2 = 0;
     ClearPWMIF(); 
 }

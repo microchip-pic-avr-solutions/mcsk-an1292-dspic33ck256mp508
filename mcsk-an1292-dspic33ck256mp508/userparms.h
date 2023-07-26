@@ -92,28 +92,28 @@ controllers, tuning mode will disable the speed PI controller */
 /*Update the following motor tuning parameters while using LVMC build configuration*/
     
 /* Motor's number of pole pairs */
-#define NOPOLESPAIRS 5
+#define NOPOLESPAIRS 2
 /* Nominal speed of the motor in RPM */
-#define NOMINAL_SPEED_RPM    2000 
+#define NOMINAL_SPEED_RPM    2800 
 /* Maximum speed of the motor in RPM - given by the motor's manufacturer */
-#define MAXIMUM_SPEED_RPM    3500 
+#define MAXIMUM_SPEED_RPM    3800 
 
 /* The following values are given in the xls attached file */
 #define NORM_CURRENT_CONST     0.000671
 /* normalized ls/dt value */
-#define NORM_LSDTBASE 8129
+#define NORM_LSDTBASE 5822
 #define NORM_LSDTBASE_SCALE 8    /* 2^NORM_LSDTBASE_SCALE is the scaling */
 #define NORM_LSDTBASE_SCALE_SHIFT        (15- NORM_LSDTBASE_SCALE)
 #define NORM_LSDTBASE_FILT_SCALE_SHIFT   (15- NORM_LSDTBASE_SCALE + 3)   
 /* normalized rs value */
-#define NORM_RS  9044
+#define NORM_RS  4471
 #define NORM_RS_SCALE       4   /* 2^NORM_RS_SCALE is the scaling */ 
 #define NORM_RS_SCALE_SHIFT         (15 - NORM_RS_SCALE) 
 /* the calculation of Rs gives a value exceeding the Q15 range so,
  the normalized value is further divided by 2 to fit the 32768 limit
  this is taken care in the estim.c where the value is implied
  normalized inv kfi at base speed */
-#define NORM_INVKFIBASE  7956
+#define NORM_INVKFIBASE  4456
 #define NORM_INVKFIBASE_SCALE	1   /* 2^NORM_INVKFIBASE_SCALE is the scaling */ 
 /* the calculation of InvKfi gives a value which not exceed the Q15 limit
    to assure that an increase of the term with 5 is possible in the lookup table
@@ -126,20 +126,20 @@ controllers, tuning mode will disable the speed PI controller */
 /* di = i(t1)-i(t2) limitation
  high speed limitation, for dt 50us 
  the value can be taken from attached xls file */
-#define D_ILIMIT_HS 956
+#define D_ILIMIT_HS 415
 /* low speed limitation, for dt 8*50us */
-#define D_ILIMIT_LS 4369
+#define D_ILIMIT_LS 2447
 
 /**********************  support xls file definitions end *********************/
 
 
 /* Filters constants definitions  */
 /* BEMF filter for d-q components @ low speeds */
-#define KFILTER_ESDQ 1200
+#define KFILTER_ESDQ 1000
 /* BEMF filter for d-q components @ high speed - Flux Weakening case */
-#define KFILTER_ESDQ_FW 164
-/* Estimated speed filter constatn */
-#define KFILTER_VELESTIM 2*374
+#define KFILTER_ESDQ_FW 500
+/* Estimated speed filter constant */
+#define KFILTER_VELESTIM 300
 
 
 /* initial offset added to estimated value, 
@@ -160,13 +160,13 @@ controllers, tuning mode will disable the speed PI controller */
  lock time is the time needed for motor's poles alignment 
 before the open loop speed ramp up */
 /* This number is: 20,000 is 1 second. */
-#define LOCK_TIME 4000 
+#define LOCK_TIME 2000 
 /* Open loop speed ramp up end value Value in RPM*/
-#define END_SPEED_RPM 500 
+#define END_SPEED_RPM 700 
 /* Open loop acceleration */
-#define OPENLOOP_RAMPSPEED_INCREASERATE 10
+#define OPENLOOP_RAMPSPEED_INCREASERATE 7
 /* Open loop q current setup - */
-#define Q_CURRENT_REF_OPENLOOP NORM_CURRENT(1.0)
+#define Q_CURRENT_REF_OPENLOOP NORM_CURRENT(0.2)
 
 /* Specify Over Current Limit - DC BUS */
 #define Q15_OVER_CURRENT_THRESHOLD NORM_CURRENT(3.0)
@@ -190,23 +190,23 @@ minimum value accepted */
     
 /* PI controllers tuning values - */     
 /* D Control Loop Coefficients */
-#define D_CURRCNTR_PTERM       Q15(0.05)
-#define D_CURRCNTR_ITERM       Q15(0.003)
+#define D_CURRCNTR_PTERM       Q15(0.903)
+#define D_CURRCNTR_ITERM       Q15(0.6921)
 #define D_CURRCNTR_CTERM       Q15(0.999)
 #define D_CURRCNTR_OUTMAX      0x7FFF
 
 /* Q Control Loop Coefficients */
-#define Q_CURRCNTR_PTERM       Q15(0.05)
-#define Q_CURRCNTR_ITERM       Q15(0.003)
+#define Q_CURRCNTR_PTERM       Q15(0.903)  
+#define Q_CURRCNTR_ITERM       Q15(0.6921)  
 #define Q_CURRCNTR_CTERM       Q15(0.999)
 #define Q_CURRCNTR_OUTMAX      0x7FFF
 
 /* Velocity Control Loop Coefficients */
-#define SPEEDCNTR_PTERM        Q15(0.05)
-#define SPEEDCNTR_ITERM        Q15(0.001)
+#define SPEEDCNTR_PTERM        Q15(0.005)
+#define SPEEDCNTR_ITERM        Q15(0.0001)
 #define SPEEDCNTR_CTERM        Q15(0.999)
-#define SPEEDCNTR_OUTMAX       0x7FFF
- 
+#define SPEEDCNTR_OUTMAX       0x7FFF 
+
 /******************************** Field Weakening *****************************/
 /* Field Weakening constant for constant torque range 
    Flux reference value */
@@ -244,13 +244,13 @@ minimum value accepted */
 #define	IDREF_SPEED1	NORM_CURRENT(-0.7)  /* ~2950 RPM */
 #define	IDREF_SPEED2	NORM_CURRENT(-0.9)  /* ~3110 RPM */
 #define	IDREF_SPEED3	NORM_CURRENT(-1.0)  /* ~3270 RPM */
-#define	IDREF_SPEED4	NORM_CURRENT(-1.4)  /* ~3430 RPM */
-#define	IDREF_SPEED5	NORM_CURRENT(-1.7)  /* ~3600 RPM */
-#define	IDREF_SPEED6	NORM_CURRENT(-2.0)  /* ~3750 RPM */
-#define	IDREF_SPEED7	NORM_CURRENT(-2.1)  /* ~3910 RPM */
-#define	IDREF_SPEED8	NORM_CURRENT(-2.2)  /* ~4070 RPM */
-#define	IDREF_SPEED9	NORM_CURRENT(-2.25) /* ~4230 RPM */
-#define	IDREF_SPEED10	NORM_CURRENT(-2.3)  /* ~4380 RPM */
+#define	IDREF_SPEED4	NORM_CURRENT(-1.2)  /* ~3430 RPM */
+#define	IDREF_SPEED5	NORM_CURRENT(-1.4)  /* ~3600 RPM */
+#define	IDREF_SPEED6	NORM_CURRENT(-1.6)  /* ~3750 RPM */
+#define	IDREF_SPEED7	NORM_CURRENT(-1.7)  /* ~3910 RPM */
+#define	IDREF_SPEED8	NORM_CURRENT(-1.8)  /* ~4070 RPM */
+#define	IDREF_SPEED9	NORM_CURRENT(-1.9) /* ~4230 RPM */
+#define	IDREF_SPEED10	NORM_CURRENT(-2.0)  /* ~4380 RPM */
 #define	IDREF_SPEED11	NORM_CURRENT(-2.35) /* ~4550 RPM */
 #define	IDREF_SPEED12	NORM_CURRENT(-2.4)  /* ~4700 RPM */
 #define	IDREF_SPEED13	NORM_CURRENT(-2.45) /* ~4860 RPM */
@@ -262,23 +262,23 @@ minimum value accepted */
 /* the following values indicate the invKfi variation with speed 
  please consult app note for details on tuning */
 #define	INVKFI_SPEED0           NORM_INVKFIBASE     /* up to 2800 RPM */
-#define	INVKFI_SPEED1           8674        /* ~2950 RPM */
-#define	INVKFI_SPEED2           9156        /* ~3110 RPM */
-#define	INVKFI_SPEED3           9638        /* ~3270 RPM */
-#define	INVKFI_SPEED4           10120       /* ~3430 RPM */
-#define	INVKFI_SPEED5           10602       /* ~3600 RPM */
-#define	INVKFI_SPEED6           11084       /* ~3750 RPM */
-#define	INVKFI_SPEED7           11566       /* ~3910 RPM */
-#define	INVKFI_SPEED8           12048       /* ~4070 RPM */
-#define	INVKFI_SPEED9           12530       /* ~4230 RPM */
-#define	INVKFI_SPEED10          13012       /* ~4380 RPM */
-#define	INVKFI_SPEED11          13494       /* ~4550 RPM */
-#define	INVKFI_SPEED12          13976       /* ~4700 RPM */
-#define	INVKFI_SPEED13          14458       /* ~4860 RPM */
-#define	INVKFI_SPEED14          14940       /* ~5020 RPM */
-#define	INVKFI_SPEED15          15422       /* ~5180 RPM */
-#define	INVKFI_SPEED16          15904       /* ~5340 RPM */
-#define	INVKFI_SPEED17          16387       /* ~5500 RPM */
+#define	INVKFI_SPEED1           4456        /* ~2950 RPM */
+#define	INVKFI_SPEED2           4830        /* ~3110 RPM */
+#define	INVKFI_SPEED3           5017        /* ~3270 RPM */
+#define	INVKFI_SPEED4           5204       /* ~3430 RPM */
+#define	INVKFI_SPEED5           5391       /* ~3600 RPM */
+#define	INVKFI_SPEED6           5578       /* ~3750 RPM */
+#define	INVKFI_SPEED7           5765       /* ~3910 RPM */
+#define	INVKFI_SPEED8           5952       /* ~4070 RPM */
+#define	INVKFI_SPEED9           6139       /* ~4230 RPM */
+#define	INVKFI_SPEED10          6326       /* ~4380 RPM */
+#define	INVKFI_SPEED11          6513       /* ~4550 RPM */
+#define	INVKFI_SPEED12          6700       /* ~4700 RPM */
+#define	INVKFI_SPEED13          6887       /* ~4860 RPM */
+#define	INVKFI_SPEED14          7074       /* ~5020 RPM */
+#define	INVKFI_SPEED15          7261       /* ~5180 RPM */
+#define	INVKFI_SPEED16          7448       /* ~5340 RPM */
+#define	INVKFI_SPEED17          7448       /* ~5500 RPM */
 
 
 
