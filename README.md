@@ -41,12 +41,12 @@ This section describes hardware setup required for the demonstration.
 1. Motor currents are amplified on the Motor Control Development Board; it can also be amplified by the amplifiers internal to the device dsPIC33CK256MP508. The firmware and development board are configured to sample and convert internal amplifier outputs (**'internal op-amp configuration'**) by default to measure the motor currents needed to implement FOC. **Table-1** summarizes the resistors to be populated and removed to convert the development board from **‘internal op-amp configuration’** to **‘external op-amp configuration’** or vice versa.
 
      <p align="left" >
-     <img  src="images/Tableopamp.PNG"></p>
+     <img  src="images/Tableopamp.png"></p>
 
 2. Connect the **thick** 3-phase wires from the motor to PHC, PHB, and PHA of the **connector J14** (no specific order), provided on the Motor Control Development Board.
 
      <p align="left" >
-     <img  src="images/motorconnection.PNG"></p>
+     <img  src="images/motorconnection.png"></p>
 
 3. Plug the 24V power supply to **connector J1** on the Motor Control Development Board. Alternatively, the development board can also be powered through connector J2.
 
@@ -96,7 +96,7 @@ Follow the below instructions, step by step, to set up and run the motor control
 
 1. Start **MPLAB X IDE** and open the project **pmsm.X (File > Open Project)** with device selection **dsPIC33CK256MP508.**  
     <p align="left">
-       <img  src="images/idedeviceselection.PNG"></p>
+       <img  src="images/idedeviceselection.png"></p>
   
 
 2. Set the project **pmsm.X** as the main project by right-clicking on the project name and selecting **Set as Main Project** as shown. The project **pmsm.X** will then appear in **bold.**
@@ -133,7 +133,7 @@ Follow the below instructions, step by step, to set up and run the motor control
      Please ensure that the selected MPLAB® XC16 Compiler and Device Pack support the device configured in the firmware
 
      <p align="left">
-     <img  src="images/projectpropertiessettings.PNG"></p>
+     <img  src="images/projectpropertiessettings.png"></p>
 
 5. Ensure that the checkbox **Load symbols when programming or building for production (slows process)** is checked under the **Loading** category of the **Project Properties** window.       
         
@@ -146,7 +146,7 @@ Follow the below instructions, step by step, to set up and run the motor control
   
 7. If the device is successfully programmed, **LD10 (LED1)** will be turned **ON**, indicating that the dsPIC® DSC is enabled.
     <p align="left">
-    <img  src="images/led.PNG"></p>
+    <img  src="images/led.png"></p>
 
 
 8. Run or stop the motor by pressing the push button **SW1.** The motor should start spinning smoothly in one direction in the nominal speed range. Ensure that the motor is spinning smoothly without any vibration. The LED **LD11(LED2)** is turned **ON** to show the button is pressed to start the motor.
